@@ -10,19 +10,23 @@ abstract class ContactDatabase : RoomDatabase() {
     //Singleton Design Pattern
     abstract val contactDAO: ContactDAO
 
-    @Volatile
-    private var INSTANCE: ContactDatabase? = null
 
-    fun getInstance(context: Context): ContactDatabase {
-        return INSTANCE ?: synchronized(this) {
-            val instance = Room.databaseBuilder(
-                context.applicationContext,
-                ContactDatabase::class.java,
-                "contacts_db"
-            ).build()
 
-            INSTANCE = instance
-            return instance
+    companion object {
+        @Volatile
+        private var INSTANCE: ContactDatabase? = null
+        @Synchronized
+        fun getInstance(context: Context): ContactDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    ContactDatabase::class.java,
+                    "contacts_db"
+                ).build()
+
+                INSTANCE = instance
+                instance
+            }
         }
     }
 }

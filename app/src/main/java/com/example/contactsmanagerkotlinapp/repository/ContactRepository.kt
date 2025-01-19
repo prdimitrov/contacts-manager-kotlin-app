@@ -11,7 +11,7 @@ class ContactRepository(private val contactDAO: ContactDAO) {
         return contactDAO.insertContact(contact)
     }
 
-    suspend fun delete(contact: Contact): Long {
+    suspend fun delete(contact: Contact): Int {
         return contactDAO.deleteContact(contact)
     }
 
@@ -19,7 +19,7 @@ class ContactRepository(private val contactDAO: ContactDAO) {
         return contactDAO.deleteAllContacts()
     }
 
-    suspend fun update(contact: Contact): Long {
+    suspend fun update(contact: Contact): Int {
         return contactDAO.updateContact(contact)
     }
 }

@@ -1,5 +1,6 @@
 package com.example.contactsmanagerkotlinapp.viewmodel
 
+import android.view.View
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
 import androidx.lifecycle.MutableLiveData
@@ -80,7 +81,7 @@ class ContactViewModel(private val repository: ContactRepository)
         }
     }
 
-    fun clearAllOrDelete() {
+    fun clearAllOrDelete(view: View) {
         if (isUpdateOrDelete) {
             delete(contactToUpdateOrDelete)
         } else {
@@ -98,10 +99,8 @@ class ContactViewModel(private val repository: ContactRepository)
     }
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
-        TODO("Not yet implemented")
     }
 
     override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
-        TODO("Not yet implemented")
     }
 }

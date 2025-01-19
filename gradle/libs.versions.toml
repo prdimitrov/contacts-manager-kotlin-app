@@ -10,7 +10,7 @@ lifecycleViewmodelKtx = "2.8.7"
 material = "1.12.0"
 activity = "1.10.0"
 constraintlayout = "2.2.0"
-roomCompiler = "2.6.21"
+roomCompiler = "2.6.1"
 roomCompilerVersion = "2.6.1"
 
 [libraries]
