@@ -13,70 +13,91 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/gradient_background"
         tools:context=".MainActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint2"
             android:layout_width="0dp"
-            android:layout_height="150dp"
+            android:layout_height="200dp"
+            android:layout_marginHorizontal="5dp"
             android:layout_marginTop="16dp"
+            android:background="@drawable/background_shape"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.444"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
                 android:id="@+id/name_editText"
-                android:layout_width="150dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_corners_textview_background"
                 android:hint="Enter name"
                 android:inputType="text"
+                android:minHeight="38dp"
                 android:text="@={contactViewModel.inputName}"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/email_editText"
-                android:layout_width="150dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_corners_textview_background"
                 android:hint="Enter email"
                 android:inputType="text"
+                android:minHeight="38dp"
                 android:text="@={contactViewModel.inputEmail}"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name_editText" />
 
             <Button
                 android:id="@+id/saveOrUpdate_Button"
+                android:layout_marginTop="-5dp"
+                android:width="120dp"
+                android:minHeight="55dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
                 android:backgroundTint="#64B5F6"
                 android:onClick="@{() -> contactViewModel.saveOrUpdate()}"
                 android:text="@={contactViewModel.saveOrUpdateButtonText}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintStart_toEndOf="@+id/name_editText"
+                app:layout_constraintTop_toTopOf="@+id/name_editText" />
 
             <Button
                 android:id="@+id/clearAllOrDelete_Button"
+                android:width="120dp"
+                android:minHeight="55dp"
+                android:layout_marginTop="-2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
                 android:backgroundTint="#64B5F6"
                 android:onClick="@{contactViewModel::clearAllOrDelete}"
                 android:text="@={contactViewModel.clearAllOrDeleteButtonText}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/saveOrUpdate_Button" />
+                app:layout_constraintStart_toEndOf="@+id/email_editText"
+                app:layout_constraintTop_toTopOf="@+id/email_editText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@id/constraint2"
