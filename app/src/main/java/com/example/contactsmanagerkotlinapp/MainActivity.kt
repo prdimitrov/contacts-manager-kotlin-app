@@ -40,6 +40,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.lifecycleOwner = this
 
+        // Observe Toast message
+        observeToastMessage()
+
         initRecyclerView()
 
     }
@@ -52,13 +55,23 @@ class MainActivity : AppCompatActivity() {
     private fun displayUsersList() {
         viewModel.contacts.observe(this, Observer {
             binding.recyclerView.adapter = MyRecyclerViewAdapter(
-                it, { selectedContact: Contact -> listItemClicked(selectedContact)})
+                it, { selectedContact: Contact -> listItemClicked(selectedContact) })
         })
     }
 
     private fun listItemClicked(selectedContact: Contact) {
-        Toast.makeText(this, "Selected name is ${selectedContact.contactName}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Selected name is ${selectedContact.contactName}", Toast.LENGTH_SHORT)
+            .show()
 
         viewModel.initUpdateAndDelete(selectedContact)
+    }
+
+    private fun observeToastMessage() {
+        viewModel.errorMessage.observe(this, Observer { message ->
+            message?.let {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                viewModel.errorMessage.value = null
+            }
+        })
     }
 }

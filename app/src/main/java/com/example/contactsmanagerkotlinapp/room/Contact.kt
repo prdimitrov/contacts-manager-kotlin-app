@@ -11,5 +11,5 @@ data class Contact(
     @ColumnInfo(name = "contact_name")
     var contactName: String,
     @ColumnInfo(name = "contact_email")
-    val contactEmail: String
+    var contactEmail: String
 )

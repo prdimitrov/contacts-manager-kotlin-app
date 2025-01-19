@@ -17,6 +17,9 @@ class ContactViewModel(private val repository: ContactRepository)
     private var isUpdateOrDelete = false
     private lateinit var contactToUpdateOrDelete: Contact
 
+    @Bindable
+    val errorMessage = MutableLiveData<String?>()
+
     // Data Binding with Live Data
     @Bindable
     val inputName = MutableLiveData<String?>()
@@ -63,18 +66,22 @@ class ContactViewModel(private val repository: ContactRepository)
     }
 
     fun saveOrUpdate() {
+        val name = inputName.value?.trim()
+        val email = inputEmail.value?.trim()
+
+        if (name.isNullOrEmpty() || email.isNullOrEmpty()) {
+            errorMessage.value = "Name and Email should not be empty!"
+            return
+        }
+
         if (isUpdateOrDelete) {
             // Make an update
-            contactToUpdateOrDelete.contactName = inputName.value!!
-            contactToUpdateOrDelete.contactName = inputEmail.value!!
+            contactToUpdateOrDelete.contactName = name
+            contactToUpdateOrDelete.contactEmail = email
             update(contactToUpdateOrDelete)
         } else {
             // Insert new contact
-            val name = inputName.value!!
-            val email = inputEmail.value!!
-
             insert(Contact(0, name, email))
-
             // Reset the name and email
             inputName.value = null
             inputEmail.value = null
